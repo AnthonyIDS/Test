@@ -393,6 +393,7 @@
           </div>
           <div class="action-row">
             <button class="check-btn" type="button" onclick="checkAnswer('q1', 'b', 'f1', 2)">Submit Quick Check</button>
+            <button class="restart-btn" type="button" onclick="goNext(1)">Next</button>
           </div>
           <div id="f1" class="feedback" aria-live="polite"></div>
         </div>
@@ -429,6 +430,8 @@
           </div>
           <div class="action-row">
             <button class="check-btn" type="button" onclick="checkAnswer('q2', 'c', 'f2', 3)">Submit Quick Check</button>
+            <button class="restart-btn" type="button" onclick="goPrev(2)">Previous</button>
+            <button class="restart-btn" type="button" onclick="goNext(2)">Next</button>
           </div>
           <div id="f2" class="feedback" aria-live="polite"></div>
         </div>
@@ -464,6 +467,7 @@
           </div>
           <div class="action-row">
             <button class="check-btn" type="button" onclick="checkAnswer('q3', 'a', 'f3', 'complete')">Submit Quick Check</button>
+            <button class="restart-btn" type="button" onclick="goPrev(3)">Previous</button>
           </div>
           <div id="f3" class="feedback" aria-live="polite"></div>
         </div>
@@ -476,9 +480,7 @@
       <button class="restart-btn" type="button" onclick="restartLesson()">Start Over</button>
     </section>
 
-    <div class="footer-note">
-      This page is designed to work well when embedded in Canvas using an iframe set to <strong>width="100%"</strong> and <strong>height="600"</strong>.
-    </div>
+  
   </main>
 
   <script>
@@ -544,6 +546,17 @@
         feedback.textContent = '';
       });
       showPanel(1);
+    }
+  
+    // Add manual navigation
+    function goNext(current) {
+      if (current === 1) showPanel(2);
+      if (current === 2) showPanel(3);
+    }
+
+    function goPrev(current) {
+      if (current === 2) showPanel(1);
+      if (current === 3) showPanel(2);
     }
   </script>
 </body>
