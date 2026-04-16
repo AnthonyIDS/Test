@@ -3,690 +3,413 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How AI Works</title>
-  <meta name="description" content="A GitHub Pages-ready HTML page that explains how AI works for college students." />
+  <title>How AI Works | SPC</title>
   <style>
     :root {
-      --navy: #0f2747;
-      --blue: #1f5fa8;
-      --sky: #eaf4ff;
-      --teal: #0b7a75;
-      --gold: #f1b93b;
-      --text: #1f2937;
-      --muted: #5b6472;
-      --white: #ffffff;
-      --border: #dbe4f0;
-      --shadow: 0 14px 36px rgba(15, 39, 71, 0.12);
-      --radius: 18px;
-      --max: 1120px;
+      --spc-blue: #00406e;
+      --spc-blue-dark: #002d4d;
+      --spc-gold: #f2a900;
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --text: #17324d;
+      --muted: #5b6f84;
+      --border: #d7e2ec;
+      --success-bg: #e8f6ee;
+      --success-text: #116149;
+      --error-bg: #fff0f0;
+      --error-text: #a62b2b;
+      --shadow: 0 10px 28px rgba(0, 64, 110, 0.1);
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #f8fbff 0%, #ffffff 45%, #f8fbff 100%);
-      line-height: 1.6;
-    }
 
-    a { color: var(--blue); }
-    img { max-width: 100%; display: block; }
-
-    .wrap {
-      width: min(var(--max), calc(100% - 2rem));
-      margin: 0 auto;
-    }
-
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: auto;
-    }
-    .skip-link:focus {
-      left: 1rem;
-      top: 1rem;
-      background: #fff;
-      padding: .75rem 1rem;
-      z-index: 999;
-      border-radius: 8px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: .9rem 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      text-decoration: none;
-      color: var(--navy);
-      font-weight: 700;
-    }
-
-    .brand-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--blue), var(--teal));
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      box-shadow: var(--shadow);
-    }
-
-    nav ul {
-      list-style: none;
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4f9 0%, #f8fbfd 100%);
+      color: var(--text);
+    }
+
+    body {
+      width: 100%;
+    }
+
+    .page {
+      width: 100%;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .banner {
+      width: 100%;
+      background: linear-gradient(135deg, var(--spc-blue) 0%, #0f5f97 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+      border-top: 5px solid var(--spc-gold);
+      margin-bottom: 18px;
+    }
+
+    .brand-row {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--navy);
-      font-weight: 600;
-      padding: .55rem .8rem;
-      border-radius: 999px;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      background: var(--sky);
-      outline: none;
-    }
-
-    .hero {
-      padding: 4.5rem 0 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(10px);
-      opacity: .55;
-      pointer-events: none;
-    }
-
-    .hero::before {
-      width: 320px;
-      height: 320px;
-      background: #dcedff;
-      top: -120px;
-      right: -100px;
-    }
-
-    .hero::after {
-      width: 240px;
-      height: 240px;
-      background: #d9fff4;
-      bottom: -70px;
-      left: -60px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr .9fr;
-      gap: 2rem;
+      justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .eyebrow {
+    .brand-tag {
       display: inline-block;
-      background: var(--sky);
-      color: var(--blue);
-      font-weight: 700;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      font-size: .8rem;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 999px;
-      padding: .45rem .8rem;
-      margin-bottom: 1rem;
-    }
-
-    h1, h2, h3 {
-      line-height: 1.15;
-      margin-top: 0;
-      color: var(--navy);
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 4.2rem);
-      margin-bottom: 1rem;
+      margin: 12px 0 8px;
+      font-size: 2rem;
+      line-height: 1.15;
     }
 
-    .hero p {
-      font-size: 1.08rem;
-      color: var(--muted);
-      max-width: 62ch;
+    .subtitle {
+      margin: 0;
+      max-width: 900px;
+      color: rgba(255,255,255,0.92);
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      font-weight: 700;
-      border-radius: 999px;
-      padding: .9rem 1.2rem;
-      border: 2px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--blue), var(--teal));
-      color: white;
-      box-shadow: var(--shadow);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--navy);
-      border-color: var(--border);
-    }
-
-    .hero-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      box-shadow: var(--shadow);
-      padding: 1.4rem;
-    }
-
-    .mini-label {
-      font-size: .82rem;
-      font-weight: 700;
-      color: var(--blue);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      margin-bottom: .5rem;
-    }
-
-    .flow {
+    .grid {
       display: grid;
-      gap: .9rem;
-      margin-top: 1rem;
-    }
-
-    .flow-step {
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: .9rem;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
       align-items: start;
-      padding: .85rem;
-      border-radius: 16px;
-      background: #f8fbff;
+    }
+
+    .section-card {
+      background: var(--card);
       border: 1px solid var(--border);
-    }
-
-    .step-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--navy);
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-    }
-
-    section {
-      padding: 2rem 0;
-    }
-
-    .section-head {
-      margin-bottom: 1.2rem;
-      max-width: 70ch;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      margin-bottom: 0;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-    }
-
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.3rem;
-      box-shadow: 0 8px 24px rgba(15, 39, 71, 0.07);
-    }
-
-    .card h3 { margin-bottom: .6rem; }
-
-    .callout {
-      background: linear-gradient(135deg, #eff7ff, #f6fcfb);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 1.4rem;
+      border-radius: 18px;
+      overflow: hidden;
       box-shadow: var(--shadow);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+    .section-header {
+      background: var(--spc-blue);
+      color: #fff;
+      padding: 16px 18px;
+      border-bottom: 4px solid var(--spc-gold);
     }
 
-    .checklist {
+    .section-number {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.92;
+      margin-bottom: 6px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .section-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .section-body p,
+    .section-body li {
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+
+    .section-body p { margin: 0; }
+
+    .note {
+      background: #f4f8fc;
+      border-left: 4px solid var(--spc-gold);
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: var(--text);
+    }
+
+    .arrow-list {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: grid;
+      gap: 10px;
     }
 
-    .checklist li {
-      padding-left: 1.8rem;
+    .arrow-list li {
       position: relative;
-      margin: .7rem 0;
+      padding-left: 24px;
+      margin: 0;
     }
 
-    .checklist li::before {
-      content: "✓";
+    .arrow-list li::before {
+      content: "→";
       position: absolute;
       left: 0;
       top: 0;
-      color: var(--teal);
-      font-weight: 800;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 1rem;
-      position: relative;
-      margin-top: 1rem;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 18px;
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(var(--blue), var(--teal));
-      opacity: .22;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 1rem;
-      position: relative;
-    }
-
-    .timeline-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: white;
-      border: 3px solid var(--blue);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: var(--blue);
-      position: relative;
-      z-index: 1;
-      margin-top: .15rem;
-    }
-
-    .faq {
-      display: grid;
-      gap: .9rem;
-    }
-
-    details {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1rem 1.1rem;
-    }
-
-    summary {
-      cursor: pointer;
+      color: var(--spc-blue);
       font-weight: 700;
-      color: var(--navy);
     }
 
-    footer {
-      padding: 3rem 0 4rem;
-      color: var(--muted);
-    }
-
-    .footer-box {
-      background: white;
+    .quick-check {
+      margin-top: auto;
+      background: #fbfcfe;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.2rem 1.4rem;
+      border-radius: 14px;
+      padding: 14px;
     }
 
-    .tag-row {
+    .quick-check h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--spc-blue-dark);
+    }
+
+    .question {
+      margin: 0 0 10px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .option {
       display: flex;
-      flex-wrap: wrap;
-      gap: .6rem;
-      margin-top: 1rem;
-    }
-
-    .tag {
-      background: #f3f8ff;
-      color: var(--blue);
+      align-items: flex-start;
+      gap: 8px;
+      background: #fff;
       border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .option input {
+      margin-top: 3px;
+    }
+
+    .check-btn {
+      appearance: none;
+      border: none;
+      background: var(--spc-blue);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
       font-weight: 700;
-      border-radius: 999px;
-      padding: .45rem .8rem;
-      font-size: .92rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid,
-      .two-col,
-      .cards {
-        grid-template-columns: 1fr;
-      }
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav ul {
-        justify-content: flex-start;
-      }
+    .check-btn:hover,
+    .check-btn:focus {
+      background: #0c568a;
+      transform: translateY(-1px);
     }
 
-    @media (max-width: 560px) {
-      .wrap { width: min(var(--max), calc(100% - 1rem)); }
-      .hero { padding-top: 3rem; }
-      h2 { font-size: 1.7rem; }
-      .hero-card, .callout, .card, .footer-box { padding: 1rem; }
-      .flow-step, .timeline-item { grid-template-columns: 1fr; }
-      .timeline::before { display: none; }
+    .feedback {
+      display: none;
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid #b7e2c8;
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background: var(--error-bg);
+      color: var(--error-text);
+      border: 1px solid #f3c3c3;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #eef5fb;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+      .page { padding: 14px; }
+      .banner { padding: 18px; }
+      h1 { font-size: 1.65rem; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <main class="page">
+    <section class="banner" aria-label="Page introduction">
+      <div class="brand-row">
+        <span class="brand-tag">SPC Branded Learning Page</span>
+      </div>
+      <h1>How AI Works</h1>
+      <p class="subtitle">
+        Explore three key ideas behind modern AI tools like ChatGPT, Claude, and Gemini: what large language models are, how they generate text, and how the context window shapes what they can do.
+      </p>
+    </section>
 
-  <header>
-    <div class="wrap topbar">
-      <a class="brand" href="#top" aria-label="How AI Works home">
-        <span class="brand-badge">AI</span>
-        <span>How AI Works</span>
-      </a>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#concepts">Key Concepts</a></li>
-          <li><a href="#limits">Limits</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
+    <section class="grid" aria-label="How AI works sections">
+      <article class="section-card">
+        <header class="section-header">
+          <div class="section-number">Section One</div>
+          <h2>What Is a Large Language Model?</h2>
+        </header>
+        <div class="section-body">
+          <p>
+            Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books, websites, code, articles — using a process called self-supervised learning. The model learns to predict the next word in a sentence, billions of times, until it builds a rich statistical map of human language and knowledge.
+          </p>
+          <p>
+            Think of it less like a database and more like a very well-read collaborator who learned everything by reading — and can now converse, write, reason, and create.
+          </p>
+          <div class="note">
+            <strong>Key insight:</strong> The model doesn't "look up" answers. It generates them — which is both its power and its weakness.
+          </div>
+
+          <div class="quick-check" data-answer="b">
+            <h3>Quick Check</h3>
+            <p class="question">Which description best fits a large language model?</p>
+            <div class="options">
+              <label class="option"><input type="radio" name="q1" value="a">A fixed database that stores one correct answer for every question</label>
+              <label class="option"><input type="radio" name="q1" value="b">A model trained to predict likely next words based on patterns in language</label>
+              <label class="option"><input type="radio" name="q1" value="c">A search engine that always looks up live information from the web</label>
+            </div>
+            <button class="check-btn" type="button" onclick="checkAnswer('q1', 'b', 'f1')">Check Answer</button>
+            <div id="f1" class="feedback" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section-card">
+        <header class="section-header">
+          <div class="section-number">Section Two</div>
+          <h2>How Does It Generate Text?</h2>
+        </header>
+        <div class="section-body">
+          <p>
+            When you send a prompt, the model doesn't retrieve a stored answer — it generates a response token by token (roughly word by word), sampling from a probability distribution at each step.
+          </p>
+          <ul class="arrow-list">
+            <li>Responses can vary slightly even for the same prompt.</li>
+            <li>The model can be creative (or wrong) in novel ways.</li>
+            <li>There's a "temperature" setting controlling randomness.</li>
+          </ul>
+          <p><strong>High temperature</strong> → more creative, less predictable</p>
+          <p><strong>Low temperature</strong> → more focused and deterministic</p>
+          <div class="note">
+            This also explains why you can get different answers by rephrasing the same question — you're nudging the probability distribution.
+          </div>
+
+          <div class="quick-check" data-answer="c">
+            <h3>Quick Check</h3>
+            <p class="question">What usually happens when the temperature setting is increased?</p>
+            <div class="options">
+              <label class="option"><input type="radio" name="q2" value="a">The model becomes more deterministic and predictable</label>
+              <label class="option"><input type="radio" name="q2" value="b">The model gains access to hidden facts outside the prompt</label>
+              <label class="option"><input type="radio" name="q2" value="c">The model tends to produce more varied and creative responses</label>
+            </div>
+            <button class="check-btn" type="button" onclick="checkAnswer('q2', 'c', 'f2')">Check Answer</button>
+            <div id="f2" class="feedback" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section-card">
+        <header class="section-header">
+          <div class="section-number">Section Three</div>
+          <h2>The Context Window</h2>
+        </header>
+        <div class="section-body">
+          <p>
+            Every AI model has a context window — the maximum amount of text it can "see" at once. Think of it as working memory. Anything outside it is invisible to the model.
+          </p>
+          <p>
+            Modern models have grown dramatically: from ~4,000 tokens in 2020 to 200,000+ tokens today. This allows AI to analyze full books, long codebases, or extended conversations.
+          </p>
+          <p>
+            <strong>1 token ≈ ¾ of a word in English.</strong> A typical college essay is ~750–1,500 tokens.
+          </p>
+          <div class="note">
+            <strong>Practical implication:</strong> In a long conversation, the model may "forget" things said early on — they've scrolled out of the window.
+          </div>
+
+          <div class="quick-check" data-answer="a">
+            <h3>Quick Check</h3>
+            <p class="question">What does the context window determine?</p>
+            <div class="options">
+              <label class="option"><input type="radio" name="q3" value="a">How much text the model can consider at one time</label>
+              <label class="option"><input type="radio" name="q3" value="b">How expensive the AI tool is to subscribe to</label>
+              <label class="option"><input type="radio" name="q3" value="c">Whether the model is allowed to answer a question</label>
+            </div>
+            <button class="check-btn" type="button" onclick="checkAnswer('q3', 'a', 'f3')">Check Answer</button>
+            <div id="f3" class="feedback" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer-note">
+      This page is designed to work well when embedded in Canvas using an iframe set to <strong>width="100%"</strong> and <strong>height="600"</strong>.
     </div>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="wrap hero-grid">
-        <div>
-          <span class="eyebrow">AI Literacy</span>
-          <h1>How AI Works</h1>
-          <p>
-            Artificial intelligence systems do not think like humans. They learn patterns from large amounts of data,
-            use mathematical models to detect relationships, and generate predictions based on the context they are given.
-          </p>
-          <p>
-            This page gives a simple explanation of how modern AI tools work, especially large language models used for writing,
-            chatting, brainstorming, and answering questions.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#process">Explore the Process</a>
-            <a class="btn btn-secondary" href="#faq">Common Questions</a>
-          </div>
-        </div>
-
-        <aside class="hero-card" aria-label="Quick summary">
-          <div class="mini-label">Quick Summary</div>
-          <h2 style="font-size: 1.65rem; margin-bottom: .7rem;">AI in four simple steps</h2>
-          <div class="flow">
-            <div class="flow-step">
-              <div class="step-num">1</div>
-              <div><strong>Train on data</strong><br />The model learns from huge collections of text, images, or other examples.</div>
-            </div>
-            <div class="flow-step">
-              <div class="step-num">2</div>
-              <div><strong>Find patterns</strong><br />It identifies relationships, structures, and likely next steps.</div>
-            </div>
-            <div class="flow-step">
-              <div class="step-num">3</div>
-              <div><strong>Make predictions</strong><br />It predicts what output best fits the prompt it receives.</div>
-            </div>
-            <div class="flow-step">
-              <div class="step-num">4</div>
-              <div><strong>Generate responses</strong><br />It creates text or other outputs one piece at a time.</div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="overview">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>What does it mean for AI to “work”?</h2>
-          <p>
-            AI works by using algorithms to learn from examples and make predictions. In generative AI,
-            the system is not retrieving a prewritten answer from a hidden database. It is calculating a response
-            that is statistically likely to fit the prompt and the surrounding context.
-          </p>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <h3>Data</h3>
-            <p>AI models are trained on very large collections of examples so they can learn patterns and relationships.</p>
-          </article>
-          <article class="card">
-            <h3>Models</h3>
-            <p>A model is a mathematical system that uses learned patterns to make decisions or predictions.</p>
-          </article>
-          <article class="card">
-            <h3>Predictions</h3>
-            <p>Whether generating text, labels, or recommendations, AI often works by predicting the most likely next output.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="wrap two-col">
-        <div>
-          <div class="section-head">
-            <h2>The basic process</h2>
-            <p>This simplified sequence shows what happens before and during AI use.</p>
-          </div>
-          <div class="timeline" aria-label="AI process timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot">1</div>
-              <div class="card">
-                <h3>Training</h3>
-                <p>Developers expose the model to large sets of examples. The model adjusts internal weights so it becomes better at recognizing patterns.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot">2</div>
-              <div class="card">
-                <h3>Tokenizing input</h3>
-                <p>When you type a prompt, the system breaks it into smaller pieces called tokens so the model can process it mathematically.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot">3</div>
-              <div class="card">
-                <h3>Analyzing context</h3>
-                <p>The model looks at the relationships among tokens and determines which parts of the prompt matter most.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot">4</div>
-              <div class="card">
-                <h3>Generating output</h3>
-                <p>The AI produces an answer one token at a time, repeatedly choosing what should come next based on probability.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="callout">
-            <div class="mini-label">Helpful Metaphor</div>
-            <h2 style="font-size: 1.85rem;">A writing partner that predicts the next word</h2>
-            <p>
-              A large language model works a bit like a very fast writing partner. It reads your prompt,
-              notices the context, and keeps predicting what should come next. It does that over and over,
-              which is why responses can feel conversational even though the process is statistical.
-            </p>
-            <ul class="checklist">
-              <li>It does not “understand” in the human sense.</li>
-              <li>It does not automatically know what is true.</li>
-              <li>It can sound confident even when it is wrong.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="concepts">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Key concepts behind modern AI tools</h2>
-          <p>These ideas explain why generative AI can feel powerful, useful, and sometimes unreliable.</p>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <h3>Patterns, not understanding</h3>
-            <p>AI systems are strong at identifying patterns in data, but pattern recognition is not the same as human judgment or wisdom.</p>
-          </article>
-          <article class="card">
-            <h3>Tokens</h3>
-            <p>Language models process text as tokens, which may be words, parts of words, punctuation, or symbols.</p>
-          </article>
-          <article class="card">
-            <h3>Probability</h3>
-            <p>Outputs are generated by choosing likely continuations, not by pulling a single fixed answer from memory.</p>
-          </article>
-          <article class="card">
-            <h3>Transformers</h3>
-            <p>Many modern language tools use transformer architecture, which helps the model weigh relationships across a prompt.</p>
-          </article>
-          <article class="card">
-            <h3>Context window</h3>
-            <p>The context window is the amount of text the model can consider at one time while generating a response.</p>
-          </article>
-          <article class="card">
-            <h3>Fine-tuning and alignment</h3>
-            <p>After training, developers often refine a model so it is more helpful, safer, and better at following instructions.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="limits">
-      <div class="wrap two-col">
-        <div class="card">
-          <div class="mini-label">Strengths</div>
-          <h2 style="font-size: 1.9rem;">What AI does well</h2>
-          <ul class="checklist">
-            <li>Summarizes and rewrites content quickly</li>
-            <li>Finds patterns across large amounts of information</li>
-            <li>Generates drafts, examples, and ideas</li>
-            <li>Adapts tone and format based on prompts</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="mini-label">Limitations</div>
-          <h2 style="font-size: 1.9rem;">Where caution is needed</h2>
-          <ul class="checklist">
-            <li>Can produce incorrect or invented information</li>
-            <li>May reflect bias found in training data</li>
-            <li>Does not truly reason like a human expert in every situation</li>
-            <li>Needs human review for accuracy, ethics, and context</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Common questions</h2>
-          <p>These short answers can help learners build a clear mental model of generative AI.</p>
-        </div>
-        <div class="faq">
-          <details>
-            <summary>Does AI think like a human?</summary>
-            <p>No. AI processes data mathematically and predicts outputs based on learned patterns. It can imitate human language, but that is different from human understanding.</p>
-          </details>
-          <details>
-            <summary>Does AI look up answers like a search engine?</summary>
-            <p>Not usually. Many generative AI tools create responses by predicting what text should come next. Some tools can also be connected to search systems, but generation and search are not the same thing.</p>
-          </details>
-          <details>
-            <summary>Why can AI sound right when it is wrong?</summary>
-            <p>Because the model is optimized to produce likely-looking language. A fluent answer is not the same as a verified answer.</p>
-          </details>
-          <details>
-            <summary>Why does prompt wording matter so much?</summary>
-            <p>The model depends heavily on context. Clear prompts give the AI better signals about task, audience, format, and purpose.</p>
-          </details>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="footer-box">
-        <strong>GitHub Pages tip:</strong> Save this file as <code>index.html</code> in your repository root so it can be published as a live page.
-        <div class="tag-row" aria-label="Topics covered">
-          <span class="tag">Training Data</span>
-          <span class="tag">Tokens</span>
-          <span class="tag">Prediction</span>
-          <span class="tag">Transformers</span>
-          <span class="tag">Context</span>
-          <span class="tag">Limitations</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <script>
+    function checkAnswer(questionName, correctAnswer, feedbackId) {
+      const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+      const feedback = document.getElementById(feedbackId);
+
+      if (!selected) {
+        feedback.className = 'feedback incorrect';
+        feedback.textContent = 'Select an answer first.';
+        return;
+      }
+
+      if (selected.value === correctAnswer) {
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Correct.';
+      } else {
+        feedback.className = 'feedback incorrect';
+        feedback.textContent = 'Not quite. Review the section and try again.';
+      }
+    }
+  </script>
 </body>
 </html>
