@@ -9,7 +9,6 @@
       --spc-blue: #00406e;
       --spc-blue-dark: #002d4d;
       --spc-gold: #f2a900;
-      --bg: #f5f8fb;
       --card: #ffffff;
       --text: #17324d;
       --muted: #5b6f84;
@@ -33,10 +32,6 @@
       color: var(--text);
     }
 
-    body {
-      width: 100%;
-    }
-
     .page {
       width: 100%;
       margin: 0;
@@ -52,14 +47,6 @@
       box-shadow: var(--shadow);
       border-top: 5px solid var(--spc-gold);
       margin-bottom: 18px;
-    }
-
-    .brand-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
     }
 
     .brand-tag {
@@ -88,22 +75,75 @@
       line-height: 1.6;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 18px;
-      align-items: start;
+    .progress-wrap {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
     }
 
-    .section-card {
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .progress-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--spc-blue-dark);
+    }
+
+    .step-indicators {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .step-dot {
+      width: 36px;
+      height: 10px;
+      border-radius: 999px;
+      background: #d7e2ec;
+      transition: all 0.25s ease;
+    }
+
+    .step-dot.active,
+    .step-dot.complete {
+      background: var(--spc-gold);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #e5edf4;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 33.333%;
+      background: linear-gradient(90deg, var(--spc-blue), var(--spc-gold));
+      transition: width 0.35s ease;
+    }
+
+    .panel {
+      display: none;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
+    }
+
+    .panel.active {
+      display: block;
     }
 
     .section-header {
@@ -125,22 +165,21 @@
 
     .section-header h2 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       line-height: 1.3;
     }
 
     .section-body {
-      padding: 18px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      flex: 1;
     }
 
     .section-body p,
     .section-body li {
-      line-height: 1.6;
-      font-size: 0.98rem;
+      line-height: 1.65;
+      font-size: 1rem;
     }
 
     .section-body p { margin: 0; }
@@ -150,7 +189,6 @@
       border-left: 4px solid var(--spc-gold);
       padding: 12px 14px;
       border-radius: 10px;
-      color: var(--text);
     }
 
     .arrow-list {
@@ -177,11 +215,11 @@
     }
 
     .quick-check {
-      margin-top: auto;
       background: #fbfcfe;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px;
+      padding: 16px;
+      margin-top: 6px;
     }
 
     .quick-check h3 {
@@ -212,14 +250,19 @@
       padding: 10px;
     }
 
-    .option input {
-      margin-top: 3px;
+    .option input { margin-top: 3px; }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .check-btn {
+    .check-btn,
+    .restart-btn {
       appearance: none;
       border: none;
-      background: var(--spc-blue);
       color: #fff;
       padding: 10px 14px;
       border-radius: 10px;
@@ -228,9 +271,18 @@
       transition: transform 0.15s ease, background 0.15s ease;
     }
 
+    .check-btn {
+      background: var(--spc-blue);
+    }
+
+    .restart-btn {
+      background: #5b6f84;
+    }
+
     .check-btn:hover,
-    .check-btn:focus {
-      background: #0c568a;
+    .check-btn:focus,
+    .restart-btn:hover,
+    .restart-btn:focus {
       transform: translateY(-1px);
     }
 
@@ -257,6 +309,24 @@
       border: 1px solid #f3c3c3;
     }
 
+    .completion {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .completion.active {
+      display: block;
+    }
+
+    .completion h2 {
+      margin-top: 0;
+      color: var(--spc-blue);
+    }
+
     .footer-note {
       margin-top: 18px;
       padding: 12px 14px;
@@ -278,112 +348,132 @@
 <body>
   <main class="page">
     <section class="banner" aria-label="Page introduction">
-      <div class="brand-row">
-        <span class="brand-tag">SPC Branded Learning Page</span>
-      </div>
+      <span class="brand-tag">SPC Branded Learning Page</span>
       <h1>How AI Works</h1>
       <p class="subtitle">
-        Explore three key ideas behind modern AI tools like ChatGPT, Claude, and Gemini: what large language models are, how they generate text, and how the context window shapes what they can do.
+        Move through three short sections to learn how large language models work. After each correct quick check, the page automatically advances to the next section.
       </p>
     </section>
 
-    <section class="grid" aria-label="How AI works sections">
-      <article class="section-card">
-        <header class="section-header">
-          <div class="section-number">Section One</div>
-          <h2>What Is a Large Language Model?</h2>
-        </header>
-        <div class="section-body">
-          <p>
-            Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books, websites, code, articles — using a process called self-supervised learning. The model learns to predict the next word in a sentence, billions of times, until it builds a rich statistical map of human language and knowledge.
-          </p>
-          <p>
-            Think of it less like a database and more like a very well-read collaborator who learned everything by reading — and can now converse, write, reason, and create.
-          </p>
-          <div class="note">
-            <strong>Key insight:</strong> The model doesn't "look up" answers. It generates them — which is both its power and its weakness.
-          </div>
-
-          <div class="quick-check" data-answer="b">
-            <h3>Quick Check</h3>
-            <p class="question">Which description best fits a large language model?</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q1" value="a">A fixed database that stores one correct answer for every question</label>
-              <label class="option"><input type="radio" name="q1" value="b">A model trained to predict likely next words based on patterns in language</label>
-              <label class="option"><input type="radio" name="q1" value="c">A search engine that always looks up live information from the web</label>
-            </div>
-            <button class="check-btn" type="button" onclick="checkAnswer('q1', 'b', 'f1')">Check Answer</button>
-            <div id="f1" class="feedback" aria-live="polite"></div>
-          </div>
+    <section class="progress-wrap" aria-label="Learning progress">
+      <div class="progress-top">
+        <div class="progress-label" id="progressLabel">Section 1 of 3</div>
+        <div class="step-indicators" aria-hidden="true">
+          <span class="step-dot active" id="dot1"></span>
+          <span class="step-dot" id="dot2"></span>
+          <span class="step-dot" id="dot3"></span>
         </div>
-      </article>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </section>
 
-      <article class="section-card">
-        <header class="section-header">
-          <div class="section-number">Section Two</div>
-          <h2>How Does It Generate Text?</h2>
-        </header>
-        <div class="section-body">
-          <p>
-            When you send a prompt, the model doesn't retrieve a stored answer — it generates a response token by token (roughly word by word), sampling from a probability distribution at each step.
-          </p>
-          <ul class="arrow-list">
-            <li>Responses can vary slightly even for the same prompt.</li>
-            <li>The model can be creative (or wrong) in novel ways.</li>
-            <li>There's a "temperature" setting controlling randomness.</li>
-          </ul>
-          <p><strong>High temperature</strong> → more creative, less predictable</p>
-          <p><strong>Low temperature</strong> → more focused and deterministic</p>
-          <div class="note">
-            This also explains why you can get different answers by rephrasing the same question — you're nudging the probability distribution.
-          </div>
-
-          <div class="quick-check" data-answer="c">
-            <h3>Quick Check</h3>
-            <p class="question">What usually happens when the temperature setting is increased?</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q2" value="a">The model becomes more deterministic and predictable</label>
-              <label class="option"><input type="radio" name="q2" value="b">The model gains access to hidden facts outside the prompt</label>
-              <label class="option"><input type="radio" name="q2" value="c">The model tends to produce more varied and creative responses</label>
-            </div>
-            <button class="check-btn" type="button" onclick="checkAnswer('q2', 'c', 'f2')">Check Answer</button>
-            <div id="f2" class="feedback" aria-live="polite"></div>
-          </div>
+    <section class="panel active" id="panel1">
+      <header class="section-header">
+        <div class="section-number">Section One</div>
+        <h2>What Is a Large Language Model?</h2>
+      </header>
+      <div class="section-body">
+        <p>
+          Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books, websites, code, articles — using a process called self-supervised learning. The model learns to predict the next word in a sentence, billions of times, until it builds a rich statistical map of human language and knowledge.
+        </p>
+        <p>
+          Think of it less like a database and more like a very well-read collaborator who learned everything by reading — and can now converse, write, reason, and create.
+        </p>
+        <div class="note">
+          <strong>Key insight:</strong> The model doesn't "look up" answers. It generates them — which is both its power and its weakness.
         </div>
-      </article>
 
-      <article class="section-card">
-        <header class="section-header">
-          <div class="section-number">Section Three</div>
-          <h2>The Context Window</h2>
-        </header>
-        <div class="section-body">
-          <p>
-            Every AI model has a context window — the maximum amount of text it can "see" at once. Think of it as working memory. Anything outside it is invisible to the model.
-          </p>
-          <p>
-            Modern models have grown dramatically: from ~4,000 tokens in 2020 to 200,000+ tokens today. This allows AI to analyze full books, long codebases, or extended conversations.
-          </p>
-          <p>
-            <strong>1 token ≈ ¾ of a word in English.</strong> A typical college essay is ~750–1,500 tokens.
-          </p>
-          <div class="note">
-            <strong>Practical implication:</strong> In a long conversation, the model may "forget" things said early on — they've scrolled out of the window.
+        <div class="quick-check">
+          <h3>Quick Check</h3>
+          <p class="question">Which description best fits a large language model?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="q1" value="a">A fixed database that stores one correct answer for every question</label>
+            <label class="option"><input type="radio" name="q1" value="b">A model trained to predict likely next words based on patterns in language</label>
+            <label class="option"><input type="radio" name="q1" value="c">A search engine that always looks up live information from the web</label>
           </div>
-
-          <div class="quick-check" data-answer="a">
-            <h3>Quick Check</h3>
-            <p class="question">What does the context window determine?</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q3" value="a">How much text the model can consider at one time</label>
-              <label class="option"><input type="radio" name="q3" value="b">How expensive the AI tool is to subscribe to</label>
-              <label class="option"><input type="radio" name="q3" value="c">Whether the model is allowed to answer a question</label>
-            </div>
-            <button class="check-btn" type="button" onclick="checkAnswer('q3', 'a', 'f3')">Check Answer</button>
-            <div id="f3" class="feedback" aria-live="polite"></div>
+          <div class="action-row">
+            <button class="check-btn" type="button" onclick="checkAnswer('q1', 'b', 'f1', 2)">Submit Quick Check</button>
           </div>
+          <div id="f1" class="feedback" aria-live="polite"></div>
         </div>
-      </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel2">
+      <header class="section-header">
+        <div class="section-number">Section Two</div>
+        <h2>How Does It Generate Text?</h2>
+      </header>
+      <div class="section-body">
+        <p>
+          When you send a prompt, the model doesn't retrieve a stored answer — it generates a response token by token (roughly word by word), sampling from a probability distribution at each step.
+        </p>
+        <ul class="arrow-list">
+          <li>Responses can vary slightly even for the same prompt.</li>
+          <li>The model can be creative (or wrong) in novel ways.</li>
+          <li>There's a "temperature" setting controlling randomness.</li>
+        </ul>
+        <p><strong>High temperature</strong> → more creative, less predictable</p>
+        <p><strong>Low temperature</strong> → more focused and deterministic</p>
+        <div class="note">
+          This also explains why you can get different answers by rephrasing the same question — you're nudging the probability distribution.
+        </div>
+
+        <div class="quick-check">
+          <h3>Quick Check</h3>
+          <p class="question">What usually happens when the temperature setting is increased?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="q2" value="a">The model becomes more deterministic and predictable</label>
+            <label class="option"><input type="radio" name="q2" value="b">The model gains access to hidden facts outside the prompt</label>
+            <label class="option"><input type="radio" name="q2" value="c">The model tends to produce more varied and creative responses</label>
+          </div>
+          <div class="action-row">
+            <button class="check-btn" type="button" onclick="checkAnswer('q2', 'c', 'f2', 3)">Submit Quick Check</button>
+          </div>
+          <div id="f2" class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel3">
+      <header class="section-header">
+        <div class="section-number">Section Three</div>
+        <h2>The Context Window</h2>
+      </header>
+      <div class="section-body">
+        <p>
+          Every AI model has a context window — the maximum amount of text it can "see" at once. Think of it as working memory. Anything outside it is invisible to the model.
+        </p>
+        <p>
+          Modern models have grown dramatically: from ~4,000 tokens in 2020 to 200,000+ tokens today. This allows AI to analyze full books, long codebases, or extended conversations.
+        </p>
+        <p>
+          <strong>1 token ≈ ¾ of a word in English.</strong> A typical college essay is ~750–1,500 tokens.
+        </p>
+        <div class="note">
+          <strong>Practical implication:</strong> In a long conversation, the model may "forget" things said early on — they've scrolled out of the window.
+        </div>
+
+        <div class="quick-check">
+          <h3>Quick Check</h3>
+          <p class="question">What does the context window determine?</p>
+          <div class="options">
+            <label class="option"><input type="radio" name="q3" value="a">How much text the model can consider at one time</label>
+            <label class="option"><input type="radio" name="q3" value="b">How expensive the AI tool is to subscribe to</label>
+            <label class="option"><input type="radio" name="q3" value="c">Whether the model is allowed to answer a question</label>
+          </div>
+          <div class="action-row">
+            <button class="check-btn" type="button" onclick="checkAnswer('q3', 'a', 'f3', 'complete')">Submit Quick Check</button>
+          </div>
+          <div id="f3" class="feedback" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="completion" id="completionPanel">
+      <h2>You completed all three sections.</h2>
+      <p>You now have a basic understanding of what a large language model is, how it generates text, and how the context window affects performance.</p>
+      <button class="restart-btn" type="button" onclick="restartLesson()">Start Over</button>
     </section>
 
     <div class="footer-note">
@@ -392,7 +482,37 @@
   </main>
 
   <script>
-    function checkAnswer(questionName, correctAnswer, feedbackId) {
+    function showPanel(panelNumber) {
+      document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
+      const completion = document.getElementById('completionPanel');
+      completion.classList.remove('active');
+
+      if (panelNumber === 'complete') {
+        completion.classList.add('active');
+        document.getElementById('progressLabel').textContent = 'Completed';
+        document.getElementById('progressFill').style.width = '100%';
+        ['dot1','dot2','dot3'].forEach(id => document.getElementById(id).className = 'step-dot complete');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const activePanel = document.getElementById(`panel${panelNumber}`);
+      if (activePanel) activePanel.classList.add('active');
+
+      document.getElementById('progressLabel').textContent = `Section ${panelNumber} of 3`;
+      document.getElementById('progressFill').style.width = `${(panelNumber / 3) * 100}%`;
+
+      ['dot1','dot2','dot3'].forEach((id, index) => {
+        const dot = document.getElementById(id);
+        dot.className = 'step-dot';
+        if (index + 1 < panelNumber) dot.classList.add('complete');
+        if (index + 1 === panelNumber) dot.classList.add('active');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkAnswer(questionName, correctAnswer, feedbackId, nextPanel) {
       const selected = document.querySelector(`input[name="${questionName}"]:checked`);
       const feedback = document.getElementById(feedbackId);
 
@@ -404,11 +524,26 @@
 
       if (selected.value === correctAnswer) {
         feedback.className = 'feedback correct';
-        feedback.textContent = 'Correct.';
+        feedback.textContent = nextPanel === 'complete'
+          ? 'Correct. Great work — you finished the lesson.'
+          : 'Correct. Moving to the next section...';
+
+        setTimeout(() => showPanel(nextPanel), 700);
       } else {
         feedback.className = 'feedback incorrect';
         feedback.textContent = 'Not quite. Review the section and try again.';
       }
+    }
+
+    function restartLesson() {
+      ['q1','q2','q3'].forEach(name => {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => input.checked = false);
+      });
+      document.querySelectorAll('.feedback').forEach(feedback => {
+        feedback.className = 'feedback';
+        feedback.textContent = '';
+      });
+      showPanel(1);
     }
   </script>
 </body>
