@@ -261,14 +261,7 @@
 
     .check-btn,
     .restart-btn {
-      appearance: none;
-      border: none;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s ease, background 0.15s ease;
+      background: var(--spc-blue);
     }
 
     .check-btn {
@@ -348,7 +341,7 @@
 <body>
   <main class="page">
     <section class="banner" aria-label="Page introduction">
-  
+      <span class="brand-tag">SPC Branded Learning Page</span>
       <h1>How AI Works</h1>
       <p class="subtitle">
         Move through three short sections to learn how large language models work. After each correct quick check, the page automatically advances to the next section.
@@ -480,7 +473,9 @@
       <button class="restart-btn" type="button" onclick="restartLesson()">Start Over</button>
     </section>
 
-  
+    <div class="footer-note">
+      This page is designed to work well when embedded in Canvas using an iframe set to <strong>width="100%"</strong> and <strong>height="600"</strong>.
+    </div>
   </main>
 
   <script>
