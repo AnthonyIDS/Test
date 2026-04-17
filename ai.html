@@ -261,7 +261,41 @@
 
     .check-btn,
     .restart-btn {
-      background: #5b6f84;
+      appearance: none;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,64,110,0.15);
+    }
+
+    .check-btn {
+      background: linear-gradient(135deg, var(--spc-blue), #0f5f97);
+      color: #fff;
+    }
+
+    .restart-btn {
+      background: #ffffff;
+      color: var(--spc-blue);
+      border: 1px solid var(--border);
+    }
+
+    .check-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,64,110,0.2);
+    }
+
+    .restart-btn:hover {
+      transform: translateY(-1px);
+      background: #f4f8fc;
+      box-shadow: 0 6px 16px rgba(0,64,110,0.1);
     }
 
     .check-btn {
@@ -341,12 +375,11 @@
 <body>
   <main class="page">
     <section class="banner" aria-label="Page introduction">
-      <span class="brand-tag">SPC Branded Learning Page</span>
       <h1>How AI Works</h1>
       <p class="subtitle">
         Move through three short sections to learn how large language models work. After each correct quick check, the page automatically advances to the next section.
       </p>
-      <p><strong>Learning Objectives</strong> Students will be able to identify key components of how AI works, including training data, token generation, and temperature.</p>
+      <p><strong>Learning Objective</strong> - Students will be able to identify key components of how AI works, including training data, token generation, and temperature.</p>
     </section>
 
     <section class="progress-wrap" aria-label="Learning progress">
