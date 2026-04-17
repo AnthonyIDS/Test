@@ -3,14 +3,237 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Literacy | SPC</title>
+  <title>AI Learning Segments | SPC</title>
   <style>
     :root {
       --spc-blue: #00406e;
       --spc-blue-dark: #002d4d;
       --spc-gold: #f2a900;
+      --spc-light: #f4f8fb;
+      --spc-text: #17324d;
+      --spc-muted: #5b6f84;
       --card: #ffffff;
+      --border: #d7e2ec;
+      --shadow: 0 14px 34px rgba(0, 64, 110, 0.12);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef5fa 0%, #ffffff 100%);
+      color: var(--spc-text);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--spc-blue) 0%, var(--spc-blue-dark) 100%);
+      color: white;
+      padding: 4.5rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(242, 169, 0, 0.18);
+      border: 1px solid rgba(242, 169, 0, 0.35);
+      color: #ffe29b;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 1rem auto 0;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: #e5edf5;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: -2rem auto 0;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+    }
+
+    .card-top {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--spc-blue);
+      background: #e7f0f8;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .card h2 {
+      margin: 0 0 0.8rem;
+      font-size: 1.5rem;
+      color: var(--spc-blue-dark);
+    }
+
+    .card p {
+      margin: 0 0 1rem;
+      color: var(--spc-muted);
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .features {
+      margin: 0 0 1.4rem;
+      padding-left: 1.1rem;
+      color: var(--spc-text);
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: var(--spc-blue);
+      color: white;
+      padding: 0.95rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--spc-blue-dark);
+      transform: translateY(-1px);
+    }
+
+    .footer-note {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #f9fbfd;
+      color: var(--spc-muted);
+      line-height: 1.7;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">SPC AI Learning Resource</div>
+      <h1>Explore AI in Three Segments</h1>
+      <p>
+        Choose a segment below to learn how AI works, what it gets wrong, and how to use it
+        responsibly. Each segment includes three short sections and a Quick Check that unlocks the next step.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="card">
+        <div class="card-top">Segment One</div>
+        <h2>How AI Works</h2>
+        <p>
+          Learn the foundations of large language models, including training data, token generation,
+          and context windows.
+        </p>
+        <ul class="features">
+          <li>3 short learning sections</li>
+          <li>Quick Checks after each section</li>
+          <li>Automatic progression after correct answers</li>
+        </ul>
+        <a class="btn" href="how-ai-works.html">Open Segment</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top">Segment Two</div>
+        <h2>What AI Gets Wrong</h2>
+        <p>
+          Explore hallucinations, fact-checking, lateral reading, and the kinds of bias that can
+          appear in AI systems.
+        </p>
+        <ul class="features">
+          <li>3 guided sections</li>
+          <li>Critical thinking checks</li>
+          <li>Verification-focused design</li>
+        </ul>
+        <a class="btn" href="what-ai-gets-wrong.html">Open Segment</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top">Segment Three</div>
+        <h2>Ethics &amp; Integrity</h2>
+        <p>
+          Focus on academic integrity, AI disclosure, and the hidden environmental, labor, and privacy
+          costs of AI systems.
+        </p>
+        <ul class="features">
+          <li>3 ethics-focused sections</li>
+          <li>Quick Checks for reflection</li>
+          <li>Clear and easy navigation</li>
+        </ul>
+        <a class="btn" href="ethics-integrity.html">Open Segment</a>
+      </article>
+    </section>
+
+    <div class="footer-note">
+      This layout is designed for GitHub Pages and uses a clean SPC-inspired visual style with separate pages for each segment.
+    </div>
+  </main>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How AI Works | SPC</title>
+  <style>
+    :root {
+      --spc-blue: #00406e;
+      --spc-blue-dark: #002d4d;
+      --spc-gold: #f2a900;
       --bg: #f4f8fb;
+      --card: #ffffff;
       --text: #17324d;
       --muted: #5b6f84;
       --border: #d7e2ec;
@@ -18,612 +241,419 @@
       --success-text: #116149;
       --error-bg: #fff0f0;
       --error-text: #a62b2b;
-      --shadow: 0 14px 34px rgba(0, 64, 110, 0.10);
-      --radius: 22px;
+      --shadow: 0 12px 30px rgba(0, 64, 110, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(242,169,0,0.08), transparent 28%),
-        linear-gradient(180deg, #f8fbfd 0%, #eef4f8 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #edf5fa 0%, #ffffff 100%);
       color: var(--text);
-      line-height: 1.7;
-      padding: 24px;
     }
 
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--spc-blue), var(--spc-blue-dark));
+    .topbar {
+      background: linear-gradient(135deg, var(--spc-blue) 0%, var(--spc-blue-dark) 100%);
       color: white;
-      border-radius: 28px;
-      padding: 34px 30px;
-      box-shadow: var(--shadow);
-      margin-bottom: 22px;
-      position: relative;
-      overflow: hidden;
+      padding: 1rem 1.25rem;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      background: rgba(242,169,0,0.14);
-      top: -70px;
-      right: -55px;
+    .topbar-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.22);
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 720px;
-      color: rgba(255,255,255,0.92);
-      position: relative;
-      z-index: 1;
-    }
-
-    .content-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    .progress {
-      display: inline-block;
-      background: #edf4f9;
-      color: var(--spc-blue);
-      border: 1px solid var(--border);
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 0.9rem;
+    .brand {
       font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      margin: 0 0 14px;
-      color: var(--spc-blue);
-      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
-      line-height: 1.2;
-    }
-
-    .section-intro {
-      margin-bottom: 20px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .subsection {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: #fbfdff;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .sub-label {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--spc-gold);
-      margin-bottom: 8px;
-    }
-
-    h3 {
-      margin: 0 0 10px;
-      color: var(--spc-blue-dark);
-      font-size: 1.08rem;
-    }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
-
-    .key-box {
-      border-left: 5px solid var(--spc-gold);
-      background: #fffaf0;
-      padding: 14px 16px;
-      border-radius: 14px;
-      margin-top: 12px;
-      font-weight: 600;
-    }
-
-    .quick-check {
-      margin-top: 26px;
-      border-top: 1px solid var(--border);
-      padding-top: 22px;
-    }
-
-    .quick-title {
-      color: var(--spc-blue);
-      font-weight: 700;
-      margin-bottom: 12px;
       font-size: 1.05rem;
     }
 
-    .question {
-      font-weight: 600;
-      margin-bottom: 14px;
+    .home-link {
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 0.65rem 1rem;
+      border-radius: 12px;
+      font-weight: 700;
     }
 
-    .options {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 16px;
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
     }
 
-    .option {
+    .intro-card, .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card {
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #e7f0f8;
+      color: var(--spc-blue);
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      margin: 0 0 0.7rem;
+      color: var(--spc-blue-dark);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+
+    .intro-card p {
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0.7rem 0;
+    }
+
+    .objective {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-left: 5px solid var(--spc-gold);
+      background: #fffaf0;
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+
+    .progress {
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    .step-pill {
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .step-pill.active {
+      background: var(--spc-blue);
+      color: white;
+      border-color: var(--spc-blue);
+    }
+
+    .section-card {
+      padding: 1.75rem;
+      display: none;
+    }
+
+    .section-card.active {
+      display: block;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      color: var(--spc-blue-dark);
+      font-size: 1.8rem;
+    }
+
+    .section-card p, .section-card li {
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    ul {
+      padding-left: 1.25rem;
+    }
+
+    .quick-check {
+      margin-top: 1.6rem;
+      padding: 1.2rem;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 14px;
-      background: #fbfdff;
-      transition: 0.2s ease;
+      background: #f9fbfd;
+    }
+
+    .quick-check h3 {
+      margin-top: 0;
+      color: var(--spc-blue);
+    }
+
+    .options label {
+      display: block;
+      padding: 0.85rem 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+      margin-bottom: 0.75rem;
       cursor: pointer;
-    }
-
-    .option:hover {
-      border-color: rgba(0,64,110,0.35);
-      background: #f6fbff;
-    }
-
-    .option input {
-      margin-top: 3px;
-      accent-color: var(--spc-blue);
-      transform: scale(1.08);
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 14px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      font-weight: 600;
-    }
-
-    .feedback.correct {
-      display: block;
-      background: var(--success-bg);
-      color: var(--success-text);
-      border: 1px solid #c9e9d6;
-    }
-
-    .feedback.incorrect {
-      display: block;
-      background: var(--error-bg);
-      color: var(--error-text);
-      border: 1px solid #f3caca;
+      line-height: 1.5;
     }
 
     .actions {
       display: flex;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
+      margin-top: 1rem;
     }
 
     button {
       appearance: none;
       border: none;
-      border-radius: 14px;
-      padding: 12px 18px;
-      font-size: 0.96rem;
+      background: var(--spc-blue);
+      color: white;
       font-weight: 700;
+      padding: 0.95rem 1.2rem;
+      border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.16s ease, opacity 0.16s ease, box-shadow 0.16s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     button:hover {
+      background: var(--spc-blue-dark);
       transform: translateY(-1px);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--spc-blue), var(--spc-blue-dark));
-      color: white;
-      box-shadow: 0 8px 18px rgba(0,64,110,0.18);
+    button.secondary {
+      background: #dfeaf3;
+      color: var(--spc-blue-dark);
     }
 
-    .btn-secondary {
-      background: #eef4f8;
-      color: var(--spc-blue);
-      border: 1px solid var(--border);
+    button.secondary:hover {
+      background: #ceddeb;
     }
 
-    .btn-secondary:disabled {
-      opacity: 0.45;
+    button:disabled {
+      opacity: 0.5;
       cursor: not-allowed;
       transform: none;
     }
 
-    .footer-note {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-top: 16px;
+    .feedback {
+      margin-top: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      display: none;
+      font-weight: 700;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .feedback.success {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success-text);
     }
 
-    @media (max-width: 640px) {
-      body {
-        padding: 14px;
-      }
+    .feedback.error {
+      display: block;
+      background: var(--error-bg);
+      color: var(--error-text);
+    }
 
-      .hero,
-      .content-card {
-        padding: 22px;
-      }
+    .completion {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 16px;
+      background: #eef8f0;
+      border: 1px solid #cfe8d6;
+      color: #13563f;
+      font-weight: 700;
+    }
 
-      .actions {
-        flex-direction: column;
-      }
-
-      button {
-        width: 100%;
-      }
+    .completion.show {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <div class="hero-badge">SPC • AI Learning Resource</div>
-      <h1>AI Literacy for Students</h1>
-      <p>
-        Explore how AI works, where it gets things wrong, and why ethics and integrity matter.
-      </p>
-    </header>
-
-    <main class="content-card">
-
-      <!-- SECTION 1 -->
-      <section class="section active" id="section-0">
-        <div class="progress">Section 1 of 3</div>
-        <h2>How AI Works</h2>
-        <p class="section-intro">
-          Learn the core ideas behind generative AI and large language models.
-        </p>
-
-        <div class="subsection">
-          <div class="sub-label">Part 1</div>
-          <h3>What Is a Large Language Model?</h3>
-          <p>
-            Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books, websites, code, and articles — using a process called self-supervised learning.
-          </p>
-          <p>
-            The model learns to predict what word or token is most likely to come next. Over time, it builds a statistical map of language patterns.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 1 text from the source page.
-          </div>
-        </div>
-
-        <div class="subsection">
-          <div class="sub-label">Part 2</div>
-          <h3>How AI Generates Responses</h3>
-          <p>
-            When a user enters a prompt, the model does not search for one stored answer. Instead, it generates a response token by token based on probabilities, context, and patterns learned during training.
-          </p>
-          <p>
-            This is why AI can sound fluent and helpful even though it is predicting language rather than thinking like a human.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 2 text from the source page.
-          </div>
-        </div>
-
-        <div class="subsection">
-          <div class="sub-label">Part 3</div>
-          <h3>Why the Output Can Vary</h3>
-          <p>
-            The same prompt can produce slightly different responses because AI systems sample from likely next-token options.
-          </p>
-          <p>
-            Small changes in wording, context, or system settings can shift the final output.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 3 text from the source page.
-          </div>
-        </div>
-
-        <div class="quick-check">
-          <div class="quick-title">✦ Quick Check</div>
-          <div class="question">
-            Which statement best explains how AI generates a response?
-          </div>
-          <div class="options">
-            <label class="option">
-              <input type="radio" name="q0" value="a">
-              <span>A. It copies a perfect answer from a hidden database</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q0" value="b">
-              <span>B. It generates text step by step based on learned patterns and probabilities</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q0" value="c">
-              <span>C. It waits for a human moderator to write a response</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q0" value="d">
-              <span>D. It only returns answers it memorized exactly word for word</span>
-            </label>
-          </div>
-          <button class="btn-primary" onclick="checkAnswer(0, 'b')">Submit Quick Check</button>
-          <div class="feedback" id="feedback-0"></div>
-        </div>
-
-        <div class="actions">
-          <button class="btn-secondary" disabled>Previous</button>
-          <button class="btn-secondary" onclick="nextSection()">Next</button>
-        </div>
-      </section>
-
-      <!-- SECTION 2 -->
-      <section class="section" id="section-1">
-        <div class="progress">Section 2 of 3</div>
-        <h2>What AI Gets Wrong</h2>
-        <p class="section-intro">
-          Understand the limits of AI output and why verification matters.
-        </p>
-
-        <div class="subsection">
-          <div class="sub-label">Part 1</div>
-          <h3>Hallucinations and Inaccuracies</h3>
-          <p>
-            AI can produce information that sounds confident but is inaccurate, unsupported, or completely made up.
-          </p>
-          <p>
-            These errors are often called hallucinations.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 1 text from the source page.
-          </div>
-        </div>
-
-        <div class="subsection">
-          <div class="sub-label">Part 2</div>
-          <h3>Bias and Missing Context</h3>
-          <p>
-            AI systems reflect the strengths and weaknesses of their training data. That means they can reproduce social bias, miss nuance, or oversimplify complex issues.
-          </p>
-          <p>
-            A polished response is not automatically a fair or complete one.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 2 text from the source page.
-          </div>
-        </div>
-
-        <div class="subsection">
-          <div class="sub-label">Part 3</div>
-          <h3>Why Verification Matters</h3>
-          <p>
-            Good AI use requires checking claims, reviewing sources, and applying human judgment.
-          </p>
-          <p>
-            Users should not assume that fluent writing equals truth.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 3 text from the source page.
-          </div>
-        </div>
-
-        <div class="quick-check">
-          <div class="quick-title">✦ Quick Check</div>
-          <div class="question">
-            Why can AI produce incorrect information?
-          </div>
-          <div class="options">
-            <label class="option">
-              <input type="radio" name="q1" value="a">
-              <span>A. Because it guarantees every answer is true</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q1" value="b">
-              <span>B. Because it generates likely language patterns rather than guaranteeing factual accuracy</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q1" value="c">
-              <span>C. Because it only answers questions about math incorrectly</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q1" value="d">
-              <span>D. Because it refuses to answer anything uncertain</span>
-            </label>
-          </div>
-          <button class="btn-primary" onclick="checkAnswer(1, 'b')">Submit Quick Check</button>
-          <div class="feedback" id="feedback-1"></div>
-        </div>
-
-        <div class="actions">
-          <button class="btn-secondary" onclick="prevSection()">Previous</button>
-          <button class="btn-secondary" onclick="nextSection()">Next</button>
-        </div>
-      </section>
-
-      <!-- SECTION 3 -->
-      <section class="section" id="section-2">
-        <div class="progress">Section 3 of 3</div>
-        <h2>Ethics &amp; Integrity</h2>
-        <p class="section-intro">
-          Consider the responsible use of AI in academic and professional settings.
-        </p>
-
-        <div class="subsection">
-          <div class="sub-label">Part 1</div>
-          <h3>Responsible Use</h3>
-          <p>
-            Ethical AI use involves more than getting useful results. It also includes fairness, privacy, transparency, and accountability.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 1 text from the source page.
-          </div>
-        </div>
-
-        <div class="subsection">
-          <div class="sub-label">Part 2</div>
-          <h3>Academic Integrity</h3>
-          <p>
-            In educational settings, students should follow instructor expectations and course policies.
-          </p>
-          <p>
-            AI should support learning, not replace original thinking where original work is required.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 2 text from the source page.
-          </div>
-        </div>
-
-        <div class="subsection">
-          <div class="sub-label">Part 3</div>
-          <h3>Questions to Ask Before Using AI</h3>
-          <p>
-            Before using an AI tool, ask whether it is allowed, whether it protects privacy, and whether you are being honest about how it was used.
-          </p>
-          <div class="key-box">
-            Replace this with the exact Part 3 text from the source page.
-          </div>
-        </div>
-
-        <div class="quick-check">
-          <div class="quick-title">✦ Quick Check</div>
-          <div class="question">
-            Which choice best reflects ethical and academically honest AI use?
-          </div>
-          <div class="options">
-            <label class="option">
-              <input type="radio" name="q2" value="a">
-              <span>A. Submitting AI-written work as your own without checking course policy</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q2" value="b">
-              <span>B. Using AI to support learning while following instructor expectations</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q2" value="c">
-              <span>C. Sharing private information with any AI tool automatically</span>
-            </label>
-            <label class="option">
-              <input type="radio" name="q2" value="d">
-              <span>D. Assuming AI use is always allowed if no one stops you</span>
-            </label>
-          </div>
-          <button class="btn-primary" onclick="checkAnswer(2, 'b')">Submit Quick Check</button>
-          <div class="feedback" id="feedback-2"></div>
-        </div>
-
-        <div class="actions">
-          <button class="btn-secondary" onclick="prevSection()">Previous</button>
-          <button class="btn-secondary" disabled>Next</button>
-        </div>
-      </section>
-
-    </main>
-
-    <div class="footer-note">SPC branded • GitHub Pages ready • One section at a time</div>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">SPC AI Learning Resource</div>
+      <a class="home-link" href="index.html">← Back to Main Page</a>
+    </div>
   </div>
+
+  <main class="container">
+    <section class="intro-card">
+      <div class="eyebrow">Segment One</div>
+      <h1>How AI Works</h1>
+      <p>
+        Move through three short sections to learn how large language models work.
+        After each correct quick check, the page automatically advances to the next section.
+      </p>
+      <div class="objective">
+        <strong>Learning Objective:</strong> Students will be able to identify key components of how AI works,
+        including training data, token generation, and temperature.
+      </div>
+    </section>
+
+    <div class="progress">
+      <div class="step-pill active" id="pill-0">Section 1</div>
+      <div class="step-pill" id="pill-1">Section 2</div>
+      <div class="step-pill" id="pill-2">Section 3</div>
+    </div>
+
+    <section class="section-card active" id="section-0">
+      <h2>What Is a Large Language Model?</h2>
+      <p>
+        Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books,
+        websites, code, articles — using a process called self-supervised learning. The model learns to predict the next
+        word in a sentence, billions of times, until it builds a rich statistical map of human language and knowledge.
+      </p>
+      <p>
+        Think of it less like a database and more like a very well-read collaborator who learned everything by reading —
+        and can now converse, write, reason, and create.
+      </p>
+      <p><strong>Key insight:</strong> The model doesn't "look up" answers. It generates them — which is both its power and its weakness.</p>
+
+      <div class="quick-check">
+        <h3>Quick Check</h3>
+        <p><strong>How do LLMs primarily learn?</strong></p>
+        <div class="options">
+          <label><input type="radio" name="q0" value="a"> By memorizing a database of facts</label>
+          <label><input type="radio" name="q0" value="b"> By predicting the next word in text, over and over</label>
+          <label><input type="radio" name="q0" value="c"> By watching videos</label>
+        </div>
+        <div class="actions">
+          <button onclick="checkAnswer(0, 'b')">Submit Quick Check</button>
+          <button class="secondary" disabled>Previous</button>
+          <button class="secondary" onclick="goToSection(1)">Next</button>
+        </div>
+        <div class="feedback" id="feedback-0"></div>
+      </div>
+    </section>
+
+    <section class="section-card" id="section-1">
+      <h2>How Does It Generate Text?</h2>
+      <p>
+        When you send a prompt, the model doesn't retrieve a stored answer — it generates a response token by token
+        (roughly word by word), sampling from a probability distribution at each step.
+      </p>
+      <ul>
+        <li>Responses can vary slightly even for the same prompt.</li>
+        <li>The model can be creative (or wrong) in novel ways.</li>
+        <li>There's a "temperature" setting controlling randomness.</li>
+      </ul>
+      <p><strong>High temperature</strong> → more creative, less predictable</p>
+      <p><strong>Low temperature</strong> → more focused and deterministic</p>
+      <p>
+        This also explains why you can get different answers by rephrasing the same question — you're nudging the probability distribution.
+      </p>
+
+      <div class="quick-check">
+        <h3>Quick Check</h3>
+        <p><strong>Why might the same prompt give slightly different answers each time?</strong></p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="a"> The internet changes the AI's knowledge in real-time</label>
+          <label><input type="radio" name="q1" value="b"> The AI randomly chooses from its training data</label>
+          <label><input type="radio" name="q1" value="c"> The model samples probabilistically at each step</label>
+        </div>
+        <div class="actions">
+          <button onclick="checkAnswer(1, 'c')">Submit Quick Check</button>
+          <button class="secondary" onclick="goToSection(0)">Previous</button>
+          <button class="secondary" onclick="goToSection(2)">Next</button>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+      </div>
+    </section>
+
+    <section class="section-card" id="section-2">
+      <h2>The Context Window</h2>
+      <p>
+        Every AI model has a context window — the maximum amount of text it can "see" at once.
+        Think of it as working memory. Anything outside it is invisible to the model.
+      </p>
+      <p>
+        Modern models have grown dramatically: from ~4,000 tokens in 2020 to 200,000+ tokens today.
+        This allows AI to analyze full books, long codebases, or extended conversations.
+      </p>
+      <p><strong>1 token ≈ ¾ of a word in English.</strong> A typical college essay is ~750–1,500 tokens.</p>
+      <p>
+        <strong>Practical implication:</strong> In a long conversation, the model may "forget" things said early on —
+        they've scrolled out of the window.
+      </p>
+
+      <div class="quick-check">
+        <h3>Quick Check</h3>
+        <p><strong>What happens to information outside the context window?</strong></p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="a"> The model can't see or use it</label>
+          <label><input type="radio" name="q2" value="b"> It's automatically summarized</label>
+          <label><input type="radio" name="q2" value="c"> It's stored in the model's long-term memory</label>
+        </div>
+        <div class="actions">
+          <button onclick="checkAnswer(2, 'a')">Submit Quick Check</button>
+          <button class="secondary" onclick="goToSection(1)">Previous</button>
+          <button class="secondary" disabled>Next</button>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+      </div>
+
+      <div class="completion" id="completion">
+        Segment complete! Return to the main page or continue to another segment.
+      </div>
+    </section>
+  </main>
 
   <script>
     let currentSection = 0;
-    const sections = document.querySelectorAll(".section");
 
-    function showSection(index) {
+    function goToSection(index) {
+      const sections = document.querySelectorAll('.section-card');
+      const pills = document.querySelectorAll('.step-pill');
+
       sections.forEach((section, i) => {
-        section.classList.toggle("active", i === index);
+        section.classList.toggle('active', i === index);
       });
+
+      pills.forEach((pill, i) => {
+        pill.classList.toggle('active', i === index);
+      });
+
       currentSection = index;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function nextSection() {
-      if (currentSection < sections.length - 1) {
-        showSection(currentSection + 1);
-      }
-    }
-
-    function prevSection() {
-      if (currentSection > 0) {
-        showSection(currentSection - 1);
-      }
-    }
-
-    function checkAnswer(questionIndex, correctAnswer) {
+    function checkAnswer(questionIndex, correctValue) {
       const selected = document.querySelector(`input[name="q${questionIndex}"]:checked`);
       const feedback = document.getElementById(`feedback-${questionIndex}`);
 
       if (!selected) {
-        feedback.className = "feedback incorrect";
-        feedback.textContent = "Please select an answer before submitting.";
+        feedback.className = 'feedback error';
+        feedback.textContent = 'Please select an answer before submitting.';
         return;
       }
 
-      if (selected.value === correctAnswer) {
-        feedback.className = "feedback correct";
-        feedback.textContent = "Correct! Nice work.";
+      if (selected.value === correctValue) {
+        feedback.className = 'feedback success';
+        feedback.textContent = 'Correct! Moving to the next section...';
+
+        setTimeout(() => {
+          if (questionIndex < 2) {
+            goToSection(questionIndex + 1);
+          } else {
+            document.getElementById('completion').classList.add('show');
+          }
+        }, 900);
       } else {
-        feedback.className = "feedback incorrect";
-        feedback.textContent = "Not quite. Review the section and try again.";
+        feedback.className = 'feedback error';
+        feedback.textContent = 'Not quite. Try again.';
       }
     }
   </script>
