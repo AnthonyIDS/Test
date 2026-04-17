@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Module | SPC</title>
+  <title>AI Literacy | SPC</title>
   <style>
     :root {
       --spc-blue: #00406e;
@@ -18,7 +18,7 @@
       --success-text: #116149;
       --error-bg: #fff0f0;
       --error-text: #a62b2b;
-      --shadow: 0 12px 30px rgba(0, 64, 110, 0.1);
+      --shadow: 0 14px 34px rgba(0, 64, 110, 0.10);
       --radius: 22px;
     }
 
@@ -26,19 +26,23 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(242, 169, 0, 0.10), transparent 25%),
+        radial-gradient(circle at top right, rgba(242,169,0,0.08), transparent 28%),
         linear-gradient(180deg, #f8fbfd 0%, #eef4f8 100%);
       color: var(--text);
-      line-height: 1.65;
+      line-height: 1.7;
       padding: 24px;
     }
 
     .page {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
@@ -56,23 +60,25 @@
     .hero::after {
       content: "";
       position: absolute;
-      width: 220px;
-      height: 220px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
-      background: rgba(242, 169, 0, 0.13);
+      background: rgba(242,169,0,0.14);
       top: -70px;
-      right: -60px;
+      right: -55px;
     }
 
     .hero-badge {
       display: inline-block;
       background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.22);
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 600;
       margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
@@ -85,18 +91,27 @@
 
     .hero p {
       margin: 0;
-      max-width: 700px;
+      max-width: 720px;
       color: rgba(255,255,255,0.92);
       position: relative;
       z-index: 1;
     }
 
-    .card {
+    .content-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 28px;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .section.active {
+      display: block;
     }
 
     .progress {
@@ -107,22 +122,45 @@
       padding: 7px 12px;
       border-radius: 999px;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 18px;
     }
 
     h2 {
       margin: 0 0 14px;
       color: var(--spc-blue);
-      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
       line-height: 1.2;
     }
 
+    .section-intro {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .subsection {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fbfdff;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .sub-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--spc-gold);
+      margin-bottom: 8px;
+    }
+
     h3 {
-      margin-top: 24px;
-      margin-bottom: 12px;
+      margin: 0 0 10px;
       color: var(--spc-blue-dark);
-      font-size: 1.05rem;
+      font-size: 1.08rem;
     }
 
     p {
@@ -130,32 +168,22 @@
       margin-bottom: 1rem;
     }
 
-    ul {
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      padding-left: 1.3rem;
-    }
-
-    li {
-      margin-bottom: 0.45rem;
-    }
-
-    .key-insight {
+    .key-box {
       border-left: 5px solid var(--spc-gold);
       background: #fffaf0;
-      padding: 16px 18px;
+      padding: 14px 16px;
       border-radius: 14px;
-      margin: 18px 0;
+      margin-top: 12px;
       font-weight: 600;
     }
 
     .quick-check {
-      margin-top: 28px;
+      margin-top: 26px;
       border-top: 1px solid var(--border);
       padding-top: 22px;
     }
 
-    .quick-check-title {
+    .quick-title {
       color: var(--spc-blue);
       font-weight: 700;
       margin-bottom: 12px;
@@ -179,21 +207,21 @@
       gap: 10px;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 14px 14px;
+      padding: 14px;
       background: #fbfdff;
       transition: 0.2s ease;
       cursor: pointer;
     }
 
     .option:hover {
-      border-color: rgba(0, 64, 110, 0.35);
+      border-color: rgba(0,64,110,0.35);
       background: #f6fbff;
     }
 
     .option input {
       margin-top: 3px;
       accent-color: var(--spc-blue);
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
 
     .feedback {
@@ -222,7 +250,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
     button {
@@ -233,7 +261,7 @@
       font-size: 0.96rem;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+      transition: transform 0.16s ease, opacity 0.16s ease, box-shadow 0.16s ease;
     }
 
     button:hover {
@@ -243,7 +271,7 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--spc-blue), var(--spc-blue-dark));
       color: white;
-      box-shadow: 0 8px 18px rgba(0, 64, 110, 0.18);
+      box-shadow: 0 8px 18px rgba(0,64,110,0.18);
     }
 
     .btn-secondary {
@@ -256,15 +284,6 @@
       opacity: 0.45;
       cursor: not-allowed;
       transform: none;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.28s ease;
-    }
-
-    .section.active {
-      display: block;
     }
 
     .footer-note {
@@ -291,7 +310,7 @@
       }
 
       .hero,
-      .card {
+      .content-card {
         padding: 22px;
       }
 
@@ -309,67 +328,87 @@
   <div class="page">
     <header class="hero">
       <div class="hero-badge">SPC • AI Learning Resource</div>
-      <h1>AI Foundations</h1>
+      <h1>AI Literacy for Students</h1>
       <p>
-        Explore how AI works, where it goes wrong, and why ethics and integrity matter through three short sections and quick checks.
+        Explore how AI works, where it gets things wrong, and why ethics and integrity matter.
       </p>
     </header>
 
-    <main class="card">
+    <main class="content-card">
+
       <!-- SECTION 1 -->
       <section class="section active" id="section-0">
         <div class="progress">Section 1 of 3</div>
         <h2>How AI Works</h2>
-
-        <p><strong>What Is a Large Language Model?</strong></p>
-
-        <p>
-          Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books, websites, code, articles — using a process called self-supervised learning. The model learns to predict the next word in a sentence, billions of times, until it builds a rich statistical map of human language and knowledge.
+        <p class="section-intro">
+          Learn the core ideas behind generative AI and large language models.
         </p>
 
-        <p>
-          Think of it less like a database and more like a very well-read collaborator who learned everything by reading — and can now converse, write, reason, and create.
-        </p>
-
-        <div class="key-insight">
-          Key insight: The model doesn't "look up" answers. It generates them — which is both its power and its weakness.
+        <div class="subsection">
+          <div class="sub-label">Part 1</div>
+          <h3>What Is a Large Language Model?</h3>
+          <p>
+            Large Language Models (LLMs) like ChatGPT, Claude, and Gemini are trained on enormous amounts of text — books, websites, code, and articles — using a process called self-supervised learning.
+          </p>
+          <p>
+            The model learns to predict what word or token is most likely to come next. Over time, it builds a statistical map of language patterns.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 1 text from the source page.
+          </div>
         </div>
 
-        <p><strong>How Does It Generate Text?</strong></p>
+        <div class="subsection">
+          <div class="sub-label">Part 2</div>
+          <h3>How AI Generates Responses</h3>
+          <p>
+            When a user enters a prompt, the model does not search for one stored answer. Instead, it generates a response token by token based on probabilities, context, and patterns learned during training.
+          </p>
+          <p>
+            This is why AI can sound fluent and helpful even though it is predicting language rather than thinking like a human.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 2 text from the source page.
+          </div>
+        </div>
 
-        <p>
-          When you send a prompt, the model doesn't retrieve a stored answer — it generates a response token by token (roughly word by word), sampling from a probability distribution at each step.
-        </p>
-
-        <p>
-          Responses can vary slightly even for the same prompt because the model is generating based on probabilities, context, and settings.
-        </p>
+        <div class="subsection">
+          <div class="sub-label">Part 3</div>
+          <h3>Why the Output Can Vary</h3>
+          <p>
+            The same prompt can produce slightly different responses because AI systems sample from likely next-token options.
+          </p>
+          <p>
+            Small changes in wording, context, or system settings can shift the final output.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 3 text from the source page.
+          </div>
+        </div>
 
         <div class="quick-check">
-          <div class="quick-check-title">✦ Quick Check</div>
+          <div class="quick-title">✦ Quick Check</div>
           <div class="question">
-            Which statement best describes how a large language model responds to a prompt?
+            Which statement best explains how AI generates a response?
           </div>
-
           <div class="options">
             <label class="option">
               <input type="radio" name="q0" value="a">
-              <span>A. It searches a hidden database and copies the exact answer</span>
+              <span>A. It copies a perfect answer from a hidden database</span>
             </label>
             <label class="option">
               <input type="radio" name="q0" value="b">
-              <span>B. It generates text token by token based on probabilities and context</span>
+              <span>B. It generates text step by step based on learned patterns and probabilities</span>
             </label>
             <label class="option">
               <input type="radio" name="q0" value="c">
-              <span>C. It waits for another user to answer the prompt first</span>
+              <span>C. It waits for a human moderator to write a response</span>
             </label>
             <label class="option">
               <input type="radio" name="q0" value="d">
-              <span>D. It only repeats text it has memorized word for word</span>
+              <span>D. It only returns answers it memorized exactly word for word</span>
             </label>
           </div>
-
           <button class="btn-primary" onclick="checkAnswer(0, 'b')">Submit Quick Check</button>
           <div class="feedback" id="feedback-0"></div>
         </div>
@@ -384,53 +423,76 @@
       <section class="section" id="section-1">
         <div class="progress">Section 2 of 3</div>
         <h2>What AI Gets Wrong</h2>
-
-        <p>
-          AI can sound confident even when it is wrong. Because it generates responses based on patterns in data rather than true understanding, it can produce inaccurate facts, made-up sources, biased ideas, or incomplete explanations.
+        <p class="section-intro">
+          Understand the limits of AI output and why verification matters.
         </p>
 
-        <p>
-          This is sometimes called a <strong>hallucination</strong> — when the AI presents false or unsupported information as if it were true.
-        </p>
-
-        <p>
-          AI also reflects the limitations of the data it was trained on. That means it can reproduce bias, miss important context, oversimplify complex issues, or present outdated information.
-        </p>
-
-        <div class="key-insight">
-          Key insight: Just because AI sounds polished does not mean it is accurate, fair, or complete.
+        <div class="subsection">
+          <div class="sub-label">Part 1</div>
+          <h3>Hallucinations and Inaccuracies</h3>
+          <p>
+            AI can produce information that sounds confident but is inaccurate, unsupported, or completely made up.
+          </p>
+          <p>
+            These errors are often called hallucinations.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 1 text from the source page.
+          </div>
         </div>
 
-        <p>
-          Good AI use requires verification. Users should fact-check claims, review sources carefully, and apply their own judgment before trusting or submitting AI-generated content.
-        </p>
+        <div class="subsection">
+          <div class="sub-label">Part 2</div>
+          <h3>Bias and Missing Context</h3>
+          <p>
+            AI systems reflect the strengths and weaknesses of their training data. That means they can reproduce social bias, miss nuance, or oversimplify complex issues.
+          </p>
+          <p>
+            A polished response is not automatically a fair or complete one.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 2 text from the source page.
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="sub-label">Part 3</div>
+          <h3>Why Verification Matters</h3>
+          <p>
+            Good AI use requires checking claims, reviewing sources, and applying human judgment.
+          </p>
+          <p>
+            Users should not assume that fluent writing equals truth.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 3 text from the source page.
+          </div>
+        </div>
 
         <div class="quick-check">
-          <div class="quick-check-title">✦ Quick Check</div>
+          <div class="quick-title">✦ Quick Check</div>
           <div class="question">
-            What is one reason AI can give incorrect information?
+            Why can AI produce incorrect information?
           </div>
-
           <div class="options">
             <label class="option">
               <input type="radio" name="q1" value="a">
-              <span>A. It always checks every answer with a live expert</span>
+              <span>A. Because it guarantees every answer is true</span>
             </label>
             <label class="option">
               <input type="radio" name="q1" value="b">
-              <span>B. It only answers questions about mathematics</span>
+              <span>B. Because it generates likely language patterns rather than guaranteeing factual accuracy</span>
             </label>
             <label class="option">
               <input type="radio" name="q1" value="c">
-              <span>C. It generates likely text patterns rather than guaranteeing truth</span>
+              <span>C. Because it only answers questions about math incorrectly</span>
             </label>
             <label class="option">
               <input type="radio" name="q1" value="d">
-              <span>D. It refuses to answer when uncertain</span>
+              <span>D. Because it refuses to answer anything uncertain</span>
             </label>
           </div>
-
-          <button class="btn-primary" onclick="checkAnswer(1, 'c')">Submit Quick Check</button>
+          <button class="btn-primary" onclick="checkAnswer(1, 'b')">Submit Quick Check</button>
           <div class="feedback" id="feedback-1"></div>
         </div>
 
@@ -444,33 +506,51 @@
       <section class="section" id="section-2">
         <div class="progress">Section 3 of 3</div>
         <h2>Ethics &amp; Integrity</h2>
-
-        <p>
-          Using AI responsibly means thinking about more than whether it works. It also means considering fairness, transparency, privacy, and academic integrity.
+        <p class="section-intro">
+          Consider the responsible use of AI in academic and professional settings.
         </p>
 
-        <p>
-          In academic settings, the core principle remains the same: your submitted work should represent your own thinking and learning. If AI is used, students should follow course policies, disclose use when required, and avoid presenting AI-generated work as entirely their own.
-        </p>
-
-        <p>
-          Ethical AI use also includes protecting sensitive information, recognizing the potential for bias, and understanding that AI tools can have real social, environmental, and human costs.
-        </p>
-
-        <div class="key-insight">
-          Key insight: Responsible AI use is not just about what the tool can do — it is about what you should do.
+        <div class="subsection">
+          <div class="sub-label">Part 1</div>
+          <h3>Responsible Use</h3>
+          <p>
+            Ethical AI use involves more than getting useful results. It also includes fairness, privacy, transparency, and accountability.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 1 text from the source page.
+          </div>
         </div>
 
-        <p>
-          Before using AI, ask: Is it allowed? Am I using it to support my learning rather than replace it? Am I being honest and transparent about how I used it?
-        </p>
+        <div class="subsection">
+          <div class="sub-label">Part 2</div>
+          <h3>Academic Integrity</h3>
+          <p>
+            In educational settings, students should follow instructor expectations and course policies.
+          </p>
+          <p>
+            AI should support learning, not replace original thinking where original work is required.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 2 text from the source page.
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="sub-label">Part 3</div>
+          <h3>Questions to Ask Before Using AI</h3>
+          <p>
+            Before using an AI tool, ask whether it is allowed, whether it protects privacy, and whether you are being honest about how it was used.
+          </p>
+          <div class="key-box">
+            Replace this with the exact Part 3 text from the source page.
+          </div>
+        </div>
 
         <div class="quick-check">
-          <div class="quick-check-title">✦ Quick Check</div>
+          <div class="quick-title">✦ Quick Check</div>
           <div class="question">
             Which choice best reflects ethical and academically honest AI use?
           </div>
-
           <div class="options">
             <label class="option">
               <input type="radio" name="q2" value="a">
@@ -478,18 +558,17 @@
             </label>
             <label class="option">
               <input type="radio" name="q2" value="b">
-              <span>B. Using AI to support learning while following instructor expectations and being transparent when required</span>
+              <span>B. Using AI to support learning while following instructor expectations</span>
             </label>
             <label class="option">
               <input type="radio" name="q2" value="c">
-              <span>C. Sharing private or confidential information with any AI tool</span>
+              <span>C. Sharing private information with any AI tool automatically</span>
             </label>
             <label class="option">
               <input type="radio" name="q2" value="d">
-              <span>D. Assuming AI use is always allowed if the instructor did not mention it</span>
+              <span>D. Assuming AI use is always allowed if no one stops you</span>
             </label>
           </div>
-
           <button class="btn-primary" onclick="checkAnswer(2, 'b')">Submit Quick Check</button>
           <div class="feedback" id="feedback-2"></div>
         </div>
@@ -499,9 +578,10 @@
           <button class="btn-secondary" disabled>Next</button>
         </div>
       </section>
+
     </main>
 
-    <div class="footer-note">SPC branded • GitHub Pages ready • Responsive modern design</div>
+    <div class="footer-note">SPC branded • GitHub Pages ready • One section at a time</div>
   </div>
 
   <script>
